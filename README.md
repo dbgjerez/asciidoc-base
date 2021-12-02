@@ -25,7 +25,11 @@ To use a container to build is my favourite option because you can do it immutab
 
 #### html
 ```bash
-    $ docker run -it -v $(pwd):/documents asciidoctor/docker-asciidoctor asciidoctor content/index.adoc -o index.html
+    $   docker run -it \
+        -v $(pwd):/documents \
+        asciidoctor/docker-asciidoctor \
+        asciidoctor content/index.adoc \
+        -o index.html
 ```
 
 #### pdf
