@@ -34,5 +34,9 @@ To use a container to build is my favourite option because you can do it immutab
 
 #### pdf
 ```bash
-    $ docker run -it -v $(pwd):/documents asciidoctor/docker-asciidoctor asciidoctor-pdf content/index.adoc -o doc.pdf
+    $   docker run -it \
+        -v $(pwd):/documents \
+        asciidoctor/docker-asciidoctor \
+        asciidoctor-pdf content/index.adoc \
+        -o doc.pdf
 ```
