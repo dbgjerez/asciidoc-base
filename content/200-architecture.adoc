@@ -1,0 +1,9 @@
+= Architecture
+
+[Abstract]
+Introduction to the chapter. In this example will be described the architecture, so I will talk about it.
+
+:numbered:
+== Components
+
+Docker will be used to build and serve a nginx server with the content.

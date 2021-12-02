@@ -1,0 +1,11 @@
+= Example
+:author: David Borrego
+:email: dbgjerez@gmail.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Asciidoc example
+:doctype: book
+
+include::100-intro.adoc[]
+
+include::200-architecture.adoc[]

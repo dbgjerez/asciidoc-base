@@ -1,0 +1,9 @@
+= Introduction
+
+[Abstract]
+This is the first text in the introduction section. This section should be used to introduce the reader to the text or documentation.
+
+:numbered:
+== As is
+
+As of this section starts the content.
