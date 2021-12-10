@@ -1,5 +1,5 @@
-# Document as a code
-Document as a code is a concept to use the power of Git and get the advantage of it. 
+# Documentation as a code
+Documentation as a code is a concept to use the power of Git and get the advantage of it. 
 
 When we document a project, it is very important that the documentation and the project code are synchronized. Another significant tip is that the documentation should be public and accessible inside the organization. 
 
