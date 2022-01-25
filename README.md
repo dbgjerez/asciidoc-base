@@ -29,7 +29,7 @@ To use a container to build is my favourite option because you can do it immutab
         -v $(pwd):/documents \
         asciidoctor/docker-asciidoctor \
         asciidoctor content/index.adoc \
-        -o index.html
+        -D output
 ```
 
 #### pdf
@@ -38,5 +38,25 @@ To use a container to build is my favourite option because you can do it immutab
         -v $(pwd):/documents \
         asciidoctor/docker-asciidoctor \
         asciidoctor-pdf content/index.adoc \
-        -o doc.pdf
+        -D output
+```
+
+## Run the HTML
+The first step is to build the documentation as the step one, specifically the html option. 
+
+Now, you will build the container that will be run to serve the html. In this repository, you can find a Dockerfile that uses httpd server, but you can use nginx or what ever you want. 
+
+```bash
+    $   docker build \
+        -t doc-name \
+        .
+```
+
+Once the container has been built, to run it's enough to run the command:
+```bash
+    $   docker run \
+        -p 8080:80 \
+        -d \
+        --name your-container-name \
+        doc-name
 ```
