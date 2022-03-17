@@ -5,6 +5,9 @@ IMAGE ?= service-mesh-wasm-go
 VERSION ?= 0.1-SNAPSHOT
 OUTPUT_FOLDER=output
 CONTAINER ?= container/Dockerfile
+
+MAIN_NAME?=index.adoc
+
 BUILDER_NAME ?= tmp/asciidoctor-builder
 .DEFAULT_GOAL := help
 
@@ -33,5 +36,6 @@ image-build: clean image-builder ## Build an imagen with html documentation
 	@docker run -it \
         -v $(shell pwd):/documents \
         ${BUILDER_NAME}:latest  \
-        asciidoctor content/index.adoc \
+        asciidoctor content/${MAIN_NAME} \
+		-a allow-uri-read \
 		-D ${OUTPUT_FOLDER}
