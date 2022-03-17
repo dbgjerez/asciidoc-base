@@ -1,9 +1,9 @@
 FROM quay.io/centos7/httpd-24-centos7
 
 # Add application sources
-ADD ../output/ /var/www/html/
+ADD ./output/ /var/www/html/
 
-COPY ../content/images/* /var/www/html/images/
+COPY ./content/images/* /var/www/html/images/
 
 # The run script uses standard ways to run the application
 CMD run-httpd
