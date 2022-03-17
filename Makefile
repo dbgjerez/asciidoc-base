@@ -20,13 +20,14 @@ build-pdf: ## Build the documentation as pdf
 .PHONY: clean
 clean: ## Clean all tmp files, docker image and output files
 	@rm -rf ${OUTPUT_FOLDER}
+	@docker images | grep 'tmp/asciidoctor-builder' | awk '{print $1 ":" $2}' | xargs -r docker rmi
 
 .PHONY: image-builder
 image-builder: ## Build a secure image with nonroot user to build an image
 	@docker build -t tmp/asciidoctor-builder:latest --build-arg USER_UID=$$UID -f build/Dockerfile.builder build
 
 .PHONY: image-build
-image-build: image-builder ## Build an imagen with html documentation
+image-build: clean image-builder ## Build an imagen with html documentation
 	mkdir output
 	@docker run -it \
         -v $(shell pwd):/documents \
