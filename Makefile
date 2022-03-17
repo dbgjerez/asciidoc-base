@@ -3,7 +3,7 @@
 HUB ?= b0rr3g0
 IMAGE ?= service-mesh-wasm-go
 VERSION ?= 0.1-SNAPSHOT
-MAIN ?= main.go
+OUTPUT_FOLDER=output
 CONTAINER ?= container/Dockerfile
 .DEFAULT_GOAL := help
 
@@ -17,6 +17,10 @@ build-html: ## Build the documentation as html
 build-pdf: ## Build the documentation as pdf
 	@asciidoctor-pdf content/index.adoc -o doc.pdf
 
+.PHONY: clean
+clean: ## Clean all tmp files, docker image and output files
+	@rm -rf ${OUTPUT_FOLDER}
+
 .PHONY: image-builder
 image-builder: ## Build a secure image with nonroot user to build an image
 	@docker build -t tmp/asciidoctor-builder:latest --build-arg USER_UID=$$UID -f build/Dockerfile.builder build
@@ -28,4 +32,4 @@ image-build: image-builder ## Build an imagen with html documentation
         -v $(shell pwd):/documents \
         tmp/asciidoctor-builder:latest  \
         asciidoctor content/index.adoc \
-		-D output
+		-D ${OUTPUT_FOLDER}
