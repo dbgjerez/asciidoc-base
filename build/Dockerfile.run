@@ -1,5 +1,9 @@
-# httpd 24 server
-FROM httpd:2.4
+FROM quay.io/centos7/httpd-24-centos7
 
-# Copy content
-COPY ./output/ /usr/local/apache2/htdocs/
+# Add application sources
+ADD ../output/ /var/www/html/
+
+COPY ../content/images/* /var/www/html/images/
+
+# The run script uses standard ways to run the application
+CMD run-httpd
