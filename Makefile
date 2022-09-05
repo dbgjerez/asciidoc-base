@@ -3,7 +3,7 @@
 HUB ?= b0rr3g0
 IMAGE ?= service-mesh-wasm-go
 VERSION ?= 0.1-SNAPSHOT
-CONTAINER ?= container/Dockerfile
+CONTAINER ?= Containerfile.run
 
 MAIN_NAME?=index.adoc
 
@@ -20,10 +20,7 @@ build-pdf: ## Build the documentation as pdf
 	@podman run -it -v ./content:/documents/ docker.io/asciidoctor/docker-asciidoctor asciidoctor-pdf index.adoc
 
 .PHONY: build-image
-build-image: clbuild-html ## Build an imagen with html documentation
-	@podman run -it \
-        -v $(shell pwd):/documents \
-        ${BUILDER_NAME}:latest  \
-        asciidoctor content/${MAIN_NAME} \
-		-a allow-uri-read \
-		-D ${OUTPUT_FOLDER}
+build-image: build-html ## Build an imagen with html documentation
+	@podman build \
+	-t ${IMAGE}:${VERSION} \
+	-f ${CONTAINER}
